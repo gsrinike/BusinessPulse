@@ -46,20 +46,20 @@ public class WeblogicServerPropertyTest {
 				"com.bea:ServerRuntime=" + sProps.getServerName() + "*,*,Type="
 						+ sProps.getProperties().getMBeanName()), null)) {
 			
-			//LOG.trace(name.toString());
-			//LOG.trace("ServerRuntime: "+getValue(name.toString(), "com.bea:ServerRuntime"));
+			LOG.trace(name.toString());
+			LOG.trace("ServerRuntime: "+getValue(name.toString(), "com.bea:ServerRuntime"));
 			String instanceName=getValue(name.toString(), "Name");
-			if(instanceNameSet.contains(instanceName)){
 			Iterator<String> iterator = sProps.getProperties().getProperties().iterator();
 			LOG.trace(instanceName);
+			if(instanceNameSet.contains(instanceName)){
 			while (iterator.hasNext()) {
 				String property = iterator.next();
 				Object value = (Object) mbsc.getAttribute(name.getObjectName(),
 						property);
 				LOG.trace(property+": "+value);
 			}
+			}
 			}	
-		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -89,8 +89,8 @@ public class WeblogicServerPropertyTest {
 		List<ServerEntity> serverEntities= new LinkedList<ServerEntity>();
 		List<String> jmxProperties = new LinkedList<String>();
 		jmxProperties.add("Name");
-		jmxProperties.add("IdleBeansCount");
-		JMXProperties properties= new JMXProperties("EJBPoolRuntime", jmxProperties);
+		jmxProperties.add("InvocationCount");
+		JMXProperties properties= new JMXProperties("WseeOperationRuntime", jmxProperties);
 		String connectionUrl="t3://localhost:7001";
 		Map<String,String> connectionProperties = new HashMap<String, String>();
 		connectionProperties.put("java.naming.security.principal", "weblogic");
@@ -100,7 +100,7 @@ public class WeblogicServerPropertyTest {
 		System.out.println("Test ");
 		ServerProperty serverProperty = new WeblogicServerProperty(serverEntities,connection,properties,"AdminServer");
 		List<String> instanceNames= new LinkedList<String>();
-		instanceNames.add("BillingServiceProvider");
+		instanceNames.add("updateInventory");
 		System.out.println("List Size: "+instanceNames.size());
 		process(serverProperty,instanceNames);
 		

@@ -79,6 +79,9 @@ public class JsonDataBuilder {
 				DOUBLE_QUOTE).append(COLON).append(DOUBLE_QUOTE).append(getBusinessProcessData().getTimeStamp()).append(DOUBLE_QUOTE).append(COMMA);
 		data = data.append(DOUBLE_QUOTE).append("BusinessProcess").append(
 				DOUBLE_QUOTE).append(COLON).append(DOUBLE_QUOTE).append(getBusinessProcessData().getBusinessProcess()).append(DOUBLE_QUOTE).append(COMMA);
+		data = data.append(DOUBLE_QUOTE).append("BusinessProcess").append(
+				DOUBLE_QUOTE).append(COLON).append(getBusinessProcessData().getBusinessProcessIndex()).append(COMMA);
+		
 		data = data.append(DOUBLE_QUOTE).append("Application").append(
 				DOUBLE_QUOTE).append(COLON).append(DOUBLE_QUOTE).append(applicationName).append(DOUBLE_QUOTE).append(COMMA);
 		data = data.append(DOUBLE_QUOTE).append("Server").append(
