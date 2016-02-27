@@ -100,7 +100,9 @@ public class KPICalculator {
 			Double dMin = Double.valueOf((String)thresholdValue.get("min"));
 			if(value < dMin){
 				Double diff = dMin - value;
-				entityIndex = entityIndex - diff;
+				
+				entityIndex = 100-(diff/dMin)*100;
+				
 			}
 			break;
 		case MAX:
@@ -108,8 +110,11 @@ public class KPICalculator {
 			Double dMax = Double.valueOf((String)thresholdValue.get("max"));
 			if(value > dMax){
 				Double diff = value - dMax;
-				entityIndex = entityIndex - diff;
+				entityIndex = 100-(diff/dMax)*100;
 			}
+		}
+		if(entityIndex<0){
+			entityIndex=Double.valueOf(0);
 		}
 		serverEntityIndex.add(entityIndex);
 		}
