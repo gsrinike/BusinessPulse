@@ -13,30 +13,30 @@
 	<import resource="../../weblogic/weblogic-config.xml"/>
 	
 	<bean name="NetworkInventoryService" class="com.infosys.tool.business.pulse.businessprocess.BusinessProcess">
-		<constructor-arg value="NetworkService"/>
-		<constructor-arg ref="ApplicationConfigurations" />
+		<constructor-arg value="NetworkInventoryService"/>
+		<constructor-arg ref="NetworkInventoryServiceApplicationConfigurations" />
 	</bean>
 	
-	<util:list id="ApplicationConfigurations">
-		<ref bean="test.businesspulse.app"/>
+	<util:list id="NetworkInventoryServiceApplicationConfigurations">
+		<ref bean="NetworkInventoryService.test.businesspulse.app"/>
 	</util:list>	
 	
 	<!-- Mobile Fulfillment -->
-	<bean name="test.businesspulse.app" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
-		<constructor-arg value="NetworkService"/>
+	<bean name="NetworkInventoryService.test.businesspulse.app" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
+		<constructor-arg value="NetworkInventoryService"/>
 		<constructor-arg ref="NetworkServiceServerConfiguration"/>
 	</bean>
 		
 	<util:list id="NetworkServiceServerConfiguration">
-		<ref bean="AdminServer"/>	
+		<ref bean="AdminNetworkServiceServer"/>	
 	</util:list>
 	
-	<bean name="AdminServer" class="com.infosys.tool.business.pulse.application.ApplicationServerConfiguration">
+	<bean name="AdminNetworkServiceServer" class="com.infosys.tool.business.pulse.application.ApplicationServerConfiguration">
 		<constructor-arg value="AdminServer"/>
-		<constructor-arg ref="AdminServerProperties"/>
+		<constructor-arg ref="AdminNetworkServiceServerProperty"/>
 	</bean>
 	
-	<util:list id="AdminServerProperties">
+	<util:list id="AdminNetworkServiceServerProperty">
 		<ref bean="AdminServerWseeServer"/>
 	</util:list>
 	
@@ -48,17 +48,17 @@
 	</bean>
 	
 	<util:list id="AdminServerWseeEntities">
-		<ref bean="AdminServerWseeEntitiesResponseTimeAverage"/>
+		<ref bean="AdminServerWseeEntitiesExecutionTimeAverage"/>
 	</util:list>
 	
-	<bean name="AdminServerWseeEntitiesResponseTimeAverage" class="com.infosys.tool.business.pulse.application.server.ServerEntity">
-		<constructor-arg value="ResponseTimeAverage"/>
+	<bean name="AdminServerWseeEntitiesExecutionTimeAverage" class="com.infosys.tool.business.pulse.application.server.ServerEntity">
+		<constructor-arg value="ExecutionTimeAverage"/>
 		<constructor-arg value="updateInventory"/>
-		<constructor-arg ref="AdminServerWseeEntitiesInvocationCountThreshold"/>
+		<constructor-arg ref="AdminServerWseeEntitiesExecutionTimeAverageThreshold"/>
 	</bean>
 	
-	<bean name="AdminServerWseeEntitiesResponseTimeAverageThreshold" class="com.infosys.tool.business.pulse.datamodel.MaxThreshold">
-		<constructor-arg value="10"/>
+	<bean name="AdminServerWseeEntitiesExecutionTimeAverageThreshold" class="com.infosys.tool.business.pulse.datamodel.MaxThreshold">
+		<constructor-arg value="3"/>
 	</bean>
 				
 </beans>

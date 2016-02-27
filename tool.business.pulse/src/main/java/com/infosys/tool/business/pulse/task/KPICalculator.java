@@ -105,7 +105,7 @@ public class KPICalculator {
 			break;
 		case MAX:
 		default:
-			Double dMax = Double.valueOf((String)thresholdValue.get("min"));
+			Double dMax = Double.valueOf((String)thresholdValue.get("max"));
 			if(value > dMax){
 				Double diff = value - dMax;
 				entityIndex = entityIndex - diff;
