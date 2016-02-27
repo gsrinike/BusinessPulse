@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<context:property-placeholder location="config.properties" />
+
+	<util:map id="env">
+		<entry key="java.naming.security.principal" value="${WLS_USER}" />
+		<entry key="java.naming.security.credentials" value="${WLS_PASSWORD}" />
+		<entry key="jmx.remote.protocol.provider.pkgs" value="weblogic.management.remote" />
+	</util:map>
+
+
+	<bean name="WLSJVMRuntime"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXProperties">
+		<constructor-arg value="JVMRuntime" />
+		<constructor-arg ref="JVMRuntimeProps" />
+	</bean>
+
+	<util:list id="JVMRuntimeProps">
+		<value>HeapFreePercent</value>
+		<value>HeapFreeCurrent</value>
+		<value>HeapSizeCurrent</value>
+		<value>Uptime</value>
+	</util:list>
+
+	<bean name="WLSThreadPoolRuntime"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXProperties">
+		<constructor-arg value="ThreadPoolRuntime" />
+		<constructor-arg ref="ThreadPoolRuntimeProps" />
+	</bean>
+
+	<util:list id="ThreadPoolRuntimeProps">
+		<value>ExecuteThreadTotalCount</value>
+		<value>HoggingThreadCount</value>
+		<value>QueueLength</value>
+		<value>PendingUserRequestCount</value>
+		<value>ExecuteThreadIdleCount</value>
+		<value>Throughput</value>
+	</util:list>
+
+	<bean name="WLSJDBCDataSourceRuntime"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXProperties">
+		<constructor-arg value="JDBCDataSourceRuntime" />
+		<constructor-arg ref="JDBCDataSourceRuntimeProps" />
+	</bean>
+
+	<util:list id="JDBCDataSourceRuntimeProps">
+		<value>CurrCapacity</value>
+		<value>CurrCapacityHighCount</value>
+		<value>LeakedConnectionCount</value>
+		<value>HighestNumAvailable</value>
+	</util:list>
+
+	<bean name="WLSServletRuntime"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXProperties">
+		<constructor-arg value="ServletRuntime" />
+		<constructor-arg ref="ServletRuntimeProps" />
+	</bean>
+
+	<util:list id="ServletRuntimeProps">
+		<value>ExecutionTimeAverage</value>
+		<value>InvocationTotalCount</value>
+	</util:list>
+
+	<bean name="WLSEJBPoolRuntime"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXProperties">
+		<constructor-arg value="EJBPoolRuntime" />
+		<constructor-arg ref="EJBPoolRuntimeProps" />
+	</bean>
+
+	<util:list id="EJBPoolRuntimeProps">
+		<value>TimeoutTotalCount</value>
+		<value>WaiterCurrentCount</value>
+		<value>IdleBeansCount</value>
+	</util:list>
+
+	<bean name="WLSJMSDestinationRuntime"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXProperties">
+		<constructor-arg value="JMSDestinationRuntime" />
+		<constructor-arg ref="JMSDestinationRuntimeProps" />
+	</bean>
+
+	<util:list id="JMSDestinationRuntimeProps">
+		<value>MessagesPendingCount</value>
+		<value>BytesPendingCount</value>
+	</util:list>
+
+
+	<bean name="WLSJMXConnection"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXConnection">
+		<constructor-arg value="${WLS_ADM}" />
+		<constructor-arg ref="env" />
+	</bean>
+
+</beans>

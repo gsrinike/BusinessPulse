@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<import resource="../../weblogic/weblogic-config.xml"/>
+	
+	<bean name="Orderfulfillment" class="com.infosys.tool.business.pulse.businessprocess.BusinessProcess">
+		<constructor-arg value="Orderfulfillment"/>
+		<constructor-arg ref="ApplicationConfigurations" />
+	</bean>
+	
+	<util:list id="ApplicationConfigurations">
+		<ref bean="crmServicesApp"/>
+	</util:list>	
+	
+	<!-- Mobile Fulfillment -->
+	<bean name="crmServicesApp" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
+		<constructor-arg value="app.customer.crm.services"/>
+		<constructor-arg ref="crmServicesAppServerConfiguration"/>
+	</bean>
+		
+	<util:list id="crmServicesAppServerConfiguration">
+		<ref bean="wlsRmdOrdFulSrvA1"/>	
+	</util:list>
+	
+	<bean name="wlsRmdOrdFulSrvA1" class="com.infosys.tool.business.pulse.application.ApplicationServerConfiguration">
+		<constructor-arg value="wlsRmdOrdFulSrvA1"/>
+		<constructor-arg ref="wlsRmdOrdFulSrvA1Properties"/>
+	</bean>
+	
+	<util:list id="wlsRmdOrdFulSrvA1Properties">
+		<ref bean="wlsRmdOrdFulSrvA1JVM"/>
+		<ref bean="wlsRmdOrdFulSrvA1JDBC"/>
+	</util:list>
+	
+	<bean name="wlsRmdOrdFulSrvA1JVM" class="com.infosys.tool.business.pulse.application.server.weblogic.WeblogicServerProperty">
+		<constructor-arg ref="wlsRmdOrdFulSrvA1EntitiesJVM"/>
+		<constructor-arg ref="WLSJMXConnection"/>
+		<constructor-arg ref="WLSJVMRuntime"/>
+		<constructor-arg value="wlsRmdOrdFulSrvA1"/>
+	</bean>
+	<bean name="wlsRmdOrdFulSrvA1JDBC" class="com.infosys.tool.business.pulse.application.server.weblogic.WeblogicServerProperty">
+		<constructor-arg ref="wlsRmdOrdFulSrvA1EntitiesJDBC"/>
+		<constructor-arg ref="WLSJMXConnection"/>
+		<constructor-arg ref="WLSJDBCDataSourceRuntime"/>
+		<constructor-arg value="wlsRmdOrdFulSrvA1"/>
+	</bean>
+	
+	<util:list id="wlsRmdOrdFulSrvA1EntitiesJVM">
+		<ref bean="JVMEntitiesJVMHeapFree"/>
+	</util:list>
+	
+	<util:list id="wlsRmdOrdFulSrvA1EntitiesJDBC">
+		<ref bean="JDBCEntitiesJDBCLCC"/>
+	</util:list>
+	
+	<bean name="JVMEntitiesJVMHeapFree" class="com.infosys.tool.business.pulse.application.server.ServerEntity">
+		<constructor-arg value="HeapFreePercent"/>
+		<constructor-arg value="wlsRmdOrdFulSrvA1"/>
+		<constructor-arg ref="JVMEntitiesJVMHeapFreeThreshold"/>
+	</bean>
+	
+	<bean name="JDBCEntitiesJDBCLCC" class="com.infosys.tool.business.pulse.application.server.ServerEntity">
+		<constructor-arg value="LeakedConnectionCount"/>
+		<constructor-arg value="CdmDbaTxDs"/>
+		<constructor-arg ref="JDBCEntitiesJDBCLCCThreshold"/>
+	</bean>
+	
+	<bean name="JVMEntitiesJVMHeapFreeThreshold" class="com.infosys.tool.business.pulse.datamodel.MinThreshold">
+		<constructor-arg value="10"/>
+	</bean>
+	
+	<bean name="JDBCEntitiesJDBCLCCThreshold" class="com.infosys.tool.business.pulse.datamodel.MaxThreshold">
+		<constructor-arg value="0"/>
+	</bean>
+			
+</beans>

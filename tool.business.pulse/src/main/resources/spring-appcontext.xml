@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	
+	<context:property-placeholder location="config.properties" />
+	<import resource="businessprocess/business-process-config.xml"/>
+	<task:scheduler id="mainScheduler" pool-size="1" />
+	<task:scheduled-tasks scheduler="mainScheduler">
+		<task:scheduled ref="fetchTask" method="fetch" fixed-delay="${INTERVAL}" />
+	</task:scheduled-tasks>
+	
+	<bean name="fetchTask" class="com.infosys.tool.business.pulse.task.DataFetchProcessor">
+		<constructor-arg ref="BusinessProcessConfiguration" />
+		<constructor-arg ref="taskExecutor" />
+	</bean>
+	
+	<task:executor id="taskExecutor" pool-size="3" queue-capacity="100" />
+
+
+</beans>
