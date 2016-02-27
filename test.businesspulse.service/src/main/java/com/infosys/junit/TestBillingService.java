@@ -1,6 +1,7 @@
 package com.infosys.junit;
 
 import java.util.Hashtable;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import javax.naming.Context;
@@ -10,10 +11,32 @@ import javax.naming.NamingException;
 import com.infosys.test.businesspulse.service.ejb.BillingService;
 import com.infosys.test.businesspulse.service.ejb.BillingServiceProvider;
 
-public class TestBillingService
+public class TestBillingService implements Runnable
 {
     
     public static void main(String[] args)
+    {
+	
+	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(50);
+	for(int i=0; i<50; i++)
+	{
+	    TestBillingService testEJBObj = new TestBillingService();
+	    try
+	    {
+		Thread.sleep(5);
+	    }
+	    catch (InterruptedException e)
+	    {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
+	    executor.submit(testEJBObj);
+	}
+	executor.shutdown();
+    }
+
+    @Override
+    public void run()
     {
 	Hashtable<String, String> env = new Hashtable<String, String>();
 	env.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
@@ -21,8 +44,6 @@ public class TestBillingService
 	Context ctx = null;
 	try
 	{
-	    
-	    ThreadPoolExecutor billingServiceTesterPool;
 	    
 	    ctx = new InitialContext(env);
 	    System.out.println("Initial Context created");
