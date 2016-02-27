@@ -38,7 +38,7 @@ public class KPICalculator {
 			processApplicationData(applicationData);
 		}
 		
-		businessProcessData.setBusinessProcessIndex(Double.toString(average(serverEntityIndex)));
+		businessProcessData.setBusinessProcessIndex(String.valueOf(average(serverEntityIndex)));
 		
 		return businessProcessData;
 	}
@@ -147,15 +147,15 @@ public class KPICalculator {
 	 * @param list
 	 * @return
 	 */
-	public static double average(List<Double> list) {
+	public static int average(List<Double> list) {
 
 	    if (list == null || list.isEmpty())
-	        return 0.0;
+	        return 0;
 	    long sum = 0;
 	    int n = list.size();
 	    for (int i = 0; i < n; i++)
 	        sum += list.get(i);
-	    return ((double) sum) / n;
+	    return ((int) sum) / n;
 	}
 	
 }
