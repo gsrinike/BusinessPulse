@@ -25,7 +25,7 @@ public class DataUploadTask  {
 	
 	public void upload() {
 		
-		setBusinessProcessData(KPICalculator.getInstance().calculate(getBusinessProcessData()));
+		setBusinessProcessData(new KPICalculator().calculate(getBusinessProcessData()));
 		List<String>data=getJsonData();
 		Iterator<String> iterator= data.iterator();
 		String postUrl=TARGET_URL+"/"+getBusinessProcessData().getBusinessProcess()+"/?pretty";
