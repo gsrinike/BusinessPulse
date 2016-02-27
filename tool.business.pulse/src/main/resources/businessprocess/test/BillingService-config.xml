@@ -14,15 +14,15 @@
 	
 	<bean name="BillingService" class="com.infosys.tool.business.pulse.businessprocess.BusinessProcess">
 		<constructor-arg value="BillingService"/>
-		<constructor-arg ref="ApplicationConfigurations" />
+		<constructor-arg ref="BillingService.ApplicationConfigurations" />
 	</bean>
 	
-	<util:list id="ApplicationConfigurations">
-		<ref bean="test.businesspulse.app"/>
+	<util:list id="BillingService.ApplicationConfigurations">
+		<ref bean="BillingService.test.businesspulse.app"/>
 	</util:list>	
 	
 	<!-- Mobile Fulfillment -->
-	<bean name="test.businesspulse.app" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
+	<bean name="BillingService.test.businesspulse.app" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
 		<constructor-arg value="BillingService"/>
 		<constructor-arg ref="BillingServiceServerConfiguration"/>
 	</bean>

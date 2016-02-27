@@ -20,7 +20,8 @@
 	
 	<util:list id="BusinessProcesses">
 		<ref bean="NetworkInventoryService"/>
-		<!-- <ref bean="BillingService"/> -->
+		<ref bean="BillingService"/>
+		<ref bean="Orderfulfillment"/>
 	</util:list>	
 		
 </beans>
