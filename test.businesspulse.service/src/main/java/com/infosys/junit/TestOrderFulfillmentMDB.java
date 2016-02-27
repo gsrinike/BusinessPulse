@@ -26,13 +26,13 @@ public class TestOrderFulfillmentMDB implements Runnable
     public static void main(String[] args)
     {
 	
-	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newCachedThreadPool();
-	for(;;)
+	ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(50);
+	for(int i=0; i<500; i++)
 	{
 	    TestOrderFulfillmentMDB testMDBObj = new TestOrderFulfillmentMDB();
 	    try
 	    {
-		Thread.sleep(10);
+		Thread.sleep(5);
 	    }
 	    catch (InterruptedException e)
 	    {
@@ -41,7 +41,7 @@ public class TestOrderFulfillmentMDB implements Runnable
 	    }
 	    executor.submit(testMDBObj);
 	}
-//	executor.shutdown();
+	executor.shutdown();
     }
 
     @Override
