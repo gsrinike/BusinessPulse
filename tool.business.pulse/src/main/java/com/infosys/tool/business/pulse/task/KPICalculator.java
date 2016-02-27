@@ -23,11 +23,7 @@ public class KPICalculator {
 	
 	private List<Double> serverEntityIndex = new LinkedList<Double>();
 	
-	private static KPICalculator INSTANCE = new KPICalculator();
 	
-	public static KPICalculator getInstance(){
-		return INSTANCE;
-	}
 	
 	public BusinessProcessData calculate(BusinessProcessData businessProcessData){
 		
