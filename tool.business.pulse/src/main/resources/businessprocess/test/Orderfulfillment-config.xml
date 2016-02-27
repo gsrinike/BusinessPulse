@@ -18,16 +18,16 @@
 	</bean>
 	
 	<util:list id="ApplicationConfigurations">
-		<ref bean="crmServicesApp"/>
+		<ref bean="test.businesspulse.app"/>
 	</util:list>	
 	
 	<!-- Mobile Fulfillment -->
-	<bean name="crmServicesApp" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
-		<constructor-arg value="app.customer.crm.services"/>
-		<constructor-arg ref="crmServicesAppServerConfiguration"/>
+	<bean name="test.businesspulse.app" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
+		<constructor-arg value="OrderIntake"/>
+		<constructor-arg ref="OrderIntakeServerConfiguration"/>
 	</bean>
 		
-	<util:list id="crmServicesAppServerConfiguration">
+	<util:list id="OrderIntakeAppServerConfiguration">
 		<ref bean="wlsRmdOrdFulSrvA1"/>	
 	</util:list>
 	

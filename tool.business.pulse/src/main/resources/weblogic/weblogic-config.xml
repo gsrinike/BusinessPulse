@@ -81,6 +81,7 @@
 		<value>TimeoutTotalCount</value>
 		<value>WaiterCurrentCount</value>
 		<value>IdleBeansCount</value>
+		<value>BeansInUseCount</value>
 	</util:list>
 
 	<bean name="WLSJMSDestinationRuntime"
@@ -101,7 +102,7 @@
 	</bean>
 
 	<util:list id="WseeOperationRuntimeProps">
-		<value>InvocationCount</value>
+		<value>ExecutionTimeAverage</value>
 		<value>ResponseTimeAverage</value>
 	</util:list>
 

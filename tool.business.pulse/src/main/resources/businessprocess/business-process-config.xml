@@ -12,6 +12,7 @@
 
 	<import resource="test/Orderfulfillment-config.xml"/>
 	<import resource="test/NetworkService-config.xml"/>
+	<import resource="test/BillingService-config.xml"/>
 	
 	<bean name="BusinessProcessConfiguration" class="com.infosys.tool.business.pulse.businessprocess.BusinessProcessConfiguration">
 		<constructor-arg ref="BusinessProcesses" />
@@ -19,6 +20,7 @@
 	
 	<util:list id="BusinessProcesses">
 		<ref bean="NetworkInventoryService"/>
+		<!-- <ref bean="BillingService"/> -->
 	</util:list>	
 		
 </beans>

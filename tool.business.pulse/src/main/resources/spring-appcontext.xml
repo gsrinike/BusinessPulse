@@ -23,7 +23,7 @@
 		<constructor-arg ref="taskExecutor" />
 	</bean>
 	
-	<task:executor id="taskExecutor" pool-size="3" queue-capacity="100" />
+	<task:executor id="taskExecutor" pool-size="2" queue-capacity="100" />
 
 
 </beans>
