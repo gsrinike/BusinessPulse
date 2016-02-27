@@ -10,6 +10,16 @@ public class NetworkInventoryService
     @WebMethod
     public void updateInventory(String customerNumber)
     {
-	System.out.println("update Inventory");
+	System.out.println("Started To Update Inventory");
+	try
+	{
+	    Thread.sleep(10000);
+	}
+	catch (InterruptedException e)
+	{
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+	System.out.println("Completed Updating the Inventory");
     }
 }
