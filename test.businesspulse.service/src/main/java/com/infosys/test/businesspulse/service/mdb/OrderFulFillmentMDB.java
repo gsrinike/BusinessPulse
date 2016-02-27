@@ -15,7 +15,7 @@ public class OrderFulFillmentMDB implements MessageListener
 	try
 	{
 	    System.out.println("Started Order fulfillment processing");
-	    Thread.sleep(5000);
+	    Thread.sleep(50000);
 	    System.out.println("Completed Order fulfillment processing");
 	}
 	catch (InterruptedException e)
