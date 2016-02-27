@@ -94,6 +94,16 @@
 		<value>BytesPendingCount</value>
 	</util:list>
 
+	<bean name="WLSWseeOperationRuntime"
+		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXProperties">
+		<constructor-arg value="WseeOperationRuntime" />
+		<constructor-arg ref="WseeOperationRuntimeProps" />
+	</bean>
+
+	<util:list id="WseeOperationRuntimeProps">
+		<value>InvocationCount</value>
+		<value>ResponseTimeAverage</value>
+	</util:list>
 
 	<bean name="WLSJMXConnection"
 		class="com.infosys.tool.business.pulse.application.server.weblogic.JMXConnection">

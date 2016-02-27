@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<import resource="../../weblogic/weblogic-config.xml"/>
+	
+	<bean name="NetworkInventoryService" class="com.infosys.tool.business.pulse.businessprocess.BusinessProcess">
+		<constructor-arg value="NetworkService"/>
+		<constructor-arg ref="ApplicationConfigurations" />
+	</bean>
+	
+	<util:list id="ApplicationConfigurations">
+		<ref bean="test.businesspulse.app"/>
+	</util:list>	
+	
+	<!-- Mobile Fulfillment -->
+	<bean name="test.businesspulse.app" class="com.infosys.tool.business.pulse.application.ApplicationConfiguration">
+		<constructor-arg value="NetworkService"/>
+		<constructor-arg ref="NetworkServiceServerConfiguration"/>
+	</bean>
+		
+	<util:list id="NetworkServiceServerConfiguration">
+		<ref bean="AdminServer"/>	
+	</util:list>
+	
+	<bean name="AdminServer" class="com.infosys.tool.business.pulse.application.ApplicationServerConfiguration">
+		<constructor-arg value="AdminServer"/>
+		<constructor-arg ref="AdminServerProperties"/>
+	</bean>
+	
+	<util:list id="AdminServerProperties">
+		<ref bean="AdminServerWseeServer"/>
+	</util:list>
+	
+	<bean name="AdminServerWseeServer" class="com.infosys.tool.business.pulse.application.server.weblogic.WeblogicServerProperty">
+		<constructor-arg ref="AdminServerWseeEntities"/>
+		<constructor-arg ref="WLSJMXConnection"/>
+		<constructor-arg ref="WLSWseeOperationRuntime"/>
+		<constructor-arg value="AdminServer"/>
+	</bean>
+	
+	<util:list id="AdminServerWseeEntities">
+		<ref bean="AdminServerWseeEntitiesResponseTimeAverage"/>
+	</util:list>
+	
+	<bean name="AdminServerWseeEntitiesResponseTimeAverage" class="com.infosys.tool.business.pulse.application.server.ServerEntity">
+		<constructor-arg value="ResponseTimeAverage"/>
+		<constructor-arg value="updateInventory"/>
+		<constructor-arg ref="AdminServerWseeEntitiesInvocationCountThreshold"/>
+	</bean>
+	
+	<bean name="AdminServerWseeEntitiesResponseTimeAverageThreshold" class="com.infosys.tool.business.pulse.datamodel.MaxThreshold">
+		<constructor-arg value="10"/>
+	</bean>
+				
+</beans>

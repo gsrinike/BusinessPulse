@@ -11,13 +11,14 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<import resource="test/Orderfulfillment-config.xml"/>
+	<import resource="test/NetworkService-config.xml"/>
 	
 	<bean name="BusinessProcessConfiguration" class="com.infosys.tool.business.pulse.businessprocess.BusinessProcessConfiguration">
 		<constructor-arg ref="BusinessProcesses" />
 	</bean>
 	
 	<util:list id="BusinessProcesses">
-		<ref bean="Orderfulfillment"/>
+		<ref bean="NetworkInventoryService"/>
 	</util:list>	
 		
 </beans>
