@@ -1,0 +1,9 @@
+.gitignore
+.metadata/*
+*/.classpath
+*/.settings/*
+*/log/*
+*/.project
+*/target/*
+*/log/*
+*/bin/*
