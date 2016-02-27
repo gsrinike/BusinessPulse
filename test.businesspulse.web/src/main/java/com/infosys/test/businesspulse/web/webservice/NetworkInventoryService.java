@@ -13,7 +13,7 @@ public class NetworkInventoryService
 	System.out.println("Started To Update Inventory");
 	try
 	{
-	    Thread.sleep(10000);
+	    Thread.sleep(10);
 	}
 	catch (InterruptedException e)
 	{
