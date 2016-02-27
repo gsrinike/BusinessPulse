@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.infosys.tools</groupId>
+	<artifactId>BusinessPulseTestApp</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>ear</packaging>
+	<name>BusinessPulseTestApp</name>
+	<properties>
+		<jdk.version>1.6</jdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<source.dir>src/main/java</source.dir>
+		<artifactName>BusinessPulseTestApp</artifactName>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>2.10.1</version>
+				<configuration>
+					<finalName>${artifactName}</finalName>
+					<modules>
+						<ejbModule>
+							<groupId>com.infosys.tools</groupId>
+							<artifactId>BusinessPulseTestSrv</artifactId>
+						</ejbModule>
+						<webModule>
+							<groupId>com.infosys.tools</groupId>
+							<artifactId>BusinessPulseTestWeb</artifactId>
+							<uri>BusinessPulseTestWeb.war</uri>
+							<bundleFileName>BusinessPulseTestWeb.war</bundleFileName>
+							<contextRoot>/BusinessPulseTestWeb</contextRoot>
+						</webModule>
+					</modules>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.infosys.tools</groupId>
+			<artifactId>BusinessPulseTestWeb</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>com.infosys.tools</groupId>
+			<artifactId>BusinessPulseTestSrv</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			 <type>ejb</type>
+		</dependency>
+	</dependencies>
+</project>    
