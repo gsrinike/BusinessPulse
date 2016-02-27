@@ -8,11 +8,9 @@
 	<properties>
 		<junit.version>4.11</junit.version>
 		<jdk.version>1.6</jdk.version>
-		<main_class>com.infosys.tool.business.pulse.Runner</main_class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<resource.dir>src/main/resources</resource.dir>
 		<artifactName>BusinessPulse</artifactName>
-		<ext.lib>extlib</ext.lib>
 		<slf4j-api-version>1.7.12</slf4j-api-version>
 		<slf4j-log4j12-version>1.7.12</slf4j-log4j12-version>
 		<log4j-version>1.2.17</log4j-version>
