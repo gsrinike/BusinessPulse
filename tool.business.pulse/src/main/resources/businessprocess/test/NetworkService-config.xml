@@ -58,7 +58,7 @@
 	</bean>
 	
 	<bean name="AdminServerWseeEntitiesExecutionTimeAverageThreshold" class="com.infosys.tool.business.pulse.datamodel.MaxThreshold">
-		<constructor-arg value="10"/>
+		<constructor-arg value="15"/>
 	</bean>
 				
 </beans>

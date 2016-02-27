@@ -48,7 +48,7 @@
 		<constructor-arg ref="OrderfulfillmentAdminServerEntitiesJVM"/>
 		<constructor-arg ref="WLSJMXConnection"/>
 		<constructor-arg ref="WLSJVMRuntime"/>
-		<constructor-arg value="wlsRmdOrdFulSrvA1"/>
+		<constructor-arg value="AdminServer"/>
 	</bean>
 	
 	<util:list id="OrderfulfillmentAdminServerEntitiesJVM">
