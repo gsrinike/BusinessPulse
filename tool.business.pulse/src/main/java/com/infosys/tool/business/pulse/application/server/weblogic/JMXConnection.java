@@ -31,26 +31,21 @@ public class JMXConnection {
 			
 			String jmxURL = "service:jmx:"+this.connectionUrl+ "/jndi/weblogic.management.mbeanservers.domainruntime";
 			LOG.trace("JMX URL: "+jmxURL);
-			MBeanServerConnection cachedConnection= (MBeanServerConnection)MBeanConnectionCacheManager.getInstance().get(jmxURL);
-			if(cachedConnection==null){
 				JMXServiceURL address =null;
 				JMXConnector connector=null;
 		    	try {
 					address = new JMXServiceURL(jmxURL);
 					connector=JMXConnectorFactory.connect(address, env);
 					this.connection=connector.getMBeanServerConnection();
-					MBeanConnectionCacheManager.getInstance().put(jmxURL, this.connection);
-					LOG.trace("MBeanServerConnection loaded and Cached: "+this.connection);
+					return this.connection;
 				} catch (MalformedURLException e) {
 					LOG.error("JMX Connection Error: "+e);
 				} catch (IOException e) {
 					LOG.error("JMX Connection Error: "+e);
 				}
 
-		    }else{
-		    	LOG.trace("Using Cached MBeanServerConnection");
-		    }
 		}
+		LOG.trace("Using Cached MBeanServerConnection");
 		return this.connection;
 	}
 
