@@ -20,6 +20,8 @@ public class DataFetchTask {
 
 	public void run() {
 	
+		DataFetcher task = new DataFetcher(businessProcess,processor);
+		taskExecutor.execute(task);
 		
 	}
 
