@@ -19,7 +19,7 @@ public class DataFetchProcessor {
 		this.taskExecutor=taskExecutor;
 		
 		for(BusinessProcess businessProcess:configuration.getBusinessProcesses()){
-			dataFetchTasks.add(new DataFetchTask(businessProcess,null,taskExecutor));
+			dataFetchTasks.add(new DataFetchTask(businessProcess,new DataUploadProcessor(),taskExecutor));
 		}
 		
 	}
