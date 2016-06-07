@@ -9,11 +9,20 @@
 	<properties>
 		<jdk.version>1.6</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<resource.dir>src/main/resources</resource.dir>
 		<source.dir>src/main/java</source.dir>
 		<artifactName>BusinessPulseTestSrv</artifactName>
+		<slf4j-api-version>1.7.12</slf4j-api-version>
+		<slf4j-log4j12-version>1.7.12</slf4j-log4j12-version>
+		<log4j-version>1.2.17</log4j-version>
 	</properties>
 	<build>
 		<finalName>${artifactName}</finalName>
+		<resources>
+			<resource>
+				<directory>${resource.dir}</directory>
+			</resource>
+		</resources>
 		<sourceDirectory>${source.dir}</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -45,6 +54,22 @@
 			<groupId>weblogic</groupId>
 			<artifactId>wlfullclient</artifactId>
 			<version>10.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-api-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j-log4j12-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j-version}</version>
 		</dependency>
 	</dependencies>
 </project>    
