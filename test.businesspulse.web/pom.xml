@@ -11,9 +11,17 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<source.dir>src/main/java</source.dir>
 		<artifactName>BusinessPulseTestWeb</artifactName>
+		<slf4j-api-version>1.7.12</slf4j-api-version>
+		<slf4j-log4j12-version>1.7.12</slf4j-log4j12-version>
+		<log4j-version>1.2.17</log4j-version>
 	</properties>
 	<build>
 		<finalName>${artifactName}</finalName>
+		<resources>
+			<resource>
+				<directory>${resource.dir}</directory>
+			</resource>
+		</resources>
 		<sourceDirectory>${source.dir}</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -35,7 +43,7 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 		</plugin>
-		</plugins>
+        </plugins>
 	</build>
 	<dependencies>
 		<dependency>
@@ -44,5 +52,10 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.infosys.tools</groupId>
+			<artifactId>BusinessPulseTestSrv</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency> 
 	</dependencies>
 </project>    
