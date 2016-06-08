@@ -33,6 +33,8 @@
 							<contextRoot>/BusinessPulseTestWeb</contextRoot>
 						</webModule>
 					</modules>
+					<defaultLibBundleDir>APP-INF/lib/</defaultLibBundleDir>
+          			<skinnyWars>true</skinnyWars>
 				</configuration>
 			</plugin>
 		</plugins>

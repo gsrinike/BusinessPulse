@@ -31,9 +31,10 @@
 				<version>2.4</version>
 				<configuration>
 					<warSourceDirectory>webapp</warSourceDirectory>
+					<attachClasses>true</attachClasses>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
-			</plugin>
+		</plugin>
 		</plugins>
 	</build>
 	<dependencies>

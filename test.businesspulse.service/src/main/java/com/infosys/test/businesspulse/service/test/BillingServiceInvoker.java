@@ -15,13 +15,16 @@ public class BillingServiceInvoker {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		BillingServiceInvoker invoker = new BillingServiceInvoker();
+		invoker.invoke();
 	}
 	
 	public void invoke(){
 		try{
 		BillingService billingService = (BillingService)  ServerContextUtils.getInstance().getContext().lookup("BillingServiceProvider#com.infosys.test.businesspulse.service.ejb.BillingService");
-		billingService.syncBillingInfo(String.valueOf(Math.random()));
+        LOG.trace("After Context Lookup of Billing service. Invoking Billing service EJB");
+        billingService.syncBillingInfo(String.valueOf(Double.valueOf(Math.rint(100)).intValue()));
+        LOG.trace("After Billing service EJB");
 				
 		}catch(Exception exception){
 			LOG.error("Error while invoking BillingService", exception);

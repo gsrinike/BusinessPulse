@@ -43,7 +43,7 @@ public class OrderFulfilmentMessageProducer {
 	    MessageProducer jmsMessageProducer = jmsSession.createProducer(orderfulfillmentQueue);
 	    
 	    Message jmsMsg = jmsSession.createMessage();
-	    jmsMsg.setJMSMessageID("Fullfill My Order" + (new Date().getTime()));
+	    jmsMsg.setJMSMessageID(""+(Long.valueOf(new Date().getTime()).intValue()));
 	    jmsMessageProducer.send(jmsMsg);
 	    
 	    jmsMessageProducer.close();
