@@ -16,12 +16,18 @@ public class ScheduleBillingTask extends TimerTask{
 		
 	}
 	public ScheduleBillingTask(Timer timer){
-		this.timer = timer;
+		this.setTimer(timer);
 	}
 	
 	@Override
 	public void run(){
 		LoadBillingService loadBillingService = new LoadBillingService();
 		loadBillingService.load();
+	}
+	public Timer getTimer() {
+		return timer;
+	}
+	public void setTimer(Timer timer) {
+		this.timer = timer;
 	}
 }

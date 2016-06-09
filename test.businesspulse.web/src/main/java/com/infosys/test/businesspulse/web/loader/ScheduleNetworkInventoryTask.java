@@ -16,12 +16,18 @@ public class ScheduleNetworkInventoryTask extends TimerTask{
 		
 	}
 	public ScheduleNetworkInventoryTask(Timer timer){
-		this.timer = timer;
+		this.setTimer(timer);
 	}
 	
 	@Override
 	public void run(){
 		LoadNetworkInventoryService loadNetworkInventoryService = new LoadNetworkInventoryService();
 		loadNetworkInventoryService.load();
+	}
+	public Timer getTimer() {
+		return timer;
+	}
+	public void setTimer(Timer timer) {
+		this.timer = timer;
 	}
 }

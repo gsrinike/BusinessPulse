@@ -10,7 +10,7 @@ public class LoadOrderFulfillment extends Loader{
 	private static final Logger LOG =LoggerFactory.getLogger(LoadOrderFulfillment.class);
 	
 	LoadOrderFulfillment() {
-		super(3, 10);
+		super(5, 15);
 	}
 	
 	public void load(){

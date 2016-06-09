@@ -16,7 +16,7 @@ public class ScheduleOrderFulfillentTask extends TimerTask{
 		
 	}
 	public ScheduleOrderFulfillentTask(Timer timer){
-		this.timer = timer;
+		this.setTimer(timer);
 	}
 	
 	@Override
@@ -24,5 +24,11 @@ public class ScheduleOrderFulfillentTask extends TimerTask{
 		LoadOrderFulfillment loadOrderFulfillment = new LoadOrderFulfillment();
 		loadOrderFulfillment.load();
 		
+	}
+	public Timer getTimer() {
+		return timer;
+	}
+	public void setTimer(Timer timer) {
+		this.timer = timer;
 	}
 }

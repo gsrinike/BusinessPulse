@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@WebServlet(asyncSupported = false, name = "OrderIntakeServlet", urlPatterns = { "/orderIntake" })
+@WebServlet(asyncSupported = false, name = "OrderIntakeServlet")
 public class OrderIntakeServlet extends HttpServlet
 {
 	private static final Logger LOG =LoggerFactory.getLogger(OrderIntakeServlet.class);
