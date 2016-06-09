@@ -60,19 +60,19 @@ public class StartupServlet extends HttpServlet{
 		 LOG.trace("Scheduling Orderfulfilment Task");
     	 Timer timer = new Timer() ;
     	 setScheduleOrderFulfillentTask(new ScheduleOrderFulfillentTask(timer));
-	     int firstSartOF = 1000*60*1 ; // after one minute of server restart.
+	     int firstSartOF = 0; // after one minute of server restart.
 	     int periodOF = 1000*60*1 ; // period is every 1 min
 	     timer.schedule(getScheduleOrderFulfillentTask(), firstSartOF, periodOF) ;//the time specified in millisecond.
 	    
 	     LOG.trace("Scheduling Billing Task");
 	    setScheduleBillingTask(new ScheduleBillingTask(timer));
-	     int firstSartB = 1000*60*1 ; // after one minute of server restart.
+	     int firstSartB = 0; // after one minute of server restart.
 	     int periodB = 1000*30 ; // period is every 30 sec
 	     timer.schedule(getScheduleBillingTask(), firstSartB, periodB) ;//the time specified in millisecond.
 	     
 	     LOG.trace("Scheduling NetworkInventory Task");
 	     setScheduleNetworkInventoryTask(new ScheduleNetworkInventoryTask(timer));
-	     int firstSartN = 1000*60*1 ; // after one minute of server restart.
+	     int firstSartN = 0; // after one minute of server restart.
 	     int periodN = 1000*30 ; // period is every 30 sec
 	     timer.schedule(getScheduleNetworkInventoryTask(), firstSartN, periodN) ;//the time specified in millisecond.
 	     

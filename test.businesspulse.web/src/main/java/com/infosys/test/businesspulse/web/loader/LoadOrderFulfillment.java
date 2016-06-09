@@ -15,7 +15,7 @@ public class LoadOrderFulfillment extends Loader{
 	
 	public void load(){
 		
-		int maxLoad=randomWithRange(75, 150);
+		int maxLoad=randomWithRange(50, 100);
 		LOG.trace(this.getClass().getSimpleName()+" with threads: "+maxLoad);
 		for(int i=0;i<maxLoad;i++){
 			Runnable worker = new Runnable() {
